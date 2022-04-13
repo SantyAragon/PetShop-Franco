@@ -1,0 +1,49 @@
+:root {
+    --color1: #fc5b5b;
+    --color2: #ffc13c;
+    --color3: #55cfc2;
+    --color4: #c35edb;
+    --color5: #f37b21;
+    --color6: #7a3d8b;
+    --color7: #f7ded1;
+    --color8: #cedc00;
+    --color9: #ffe95f;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color1);
+}
+
+#video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -10;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* ----------NAVBAR ------------*/
+.header_l .overlay.open {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+
+.header_l .overlay {
+    position: fixed;
+    background: #f3f1f7ed;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 0%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+    overflow: hidden;
+}
