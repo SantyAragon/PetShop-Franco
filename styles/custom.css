@@ -8,16 +8,18 @@
     --color7: #f7ded1;
     --color8: #cedc00;
     --color9: #ffe95f;
+    --nav-width: 70vw;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--color1);
+    /* background-color: var(--color9); */
+    background-color: white;
 }
 
 #video {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     min-width: 100%;
@@ -28,22 +30,286 @@ body {
     transform: translateX(-50%) translateY(-50%);
 }
 
-/* ----------NAVBAR ------------*/
-.header_l .overlay.open {
-    opacity: 1;
-    visibility: visible;
-    height: 100%;
+/*WELCOME */
+#welcome {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-left: 15vw;
+    font-weight: 1000;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    flex-direction: column;
 }
 
-.header_l .overlay {
-    position: fixed;
-    background: #f3f1f7ed;
+#welcome p {
+    font-weight: 300;
+}
+
+#welcome button {
+    font-weight: 400;
+}
+
+/* From uiverse.io by @BHARGAVPATEL1244 */
+#shop-button button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: #26f3ec90;
+    color: rgb(0, 0, 0);
+    width: 10rem;
+}
+
+#shop-button button span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+}
+
+#shop-button button:hover span {
+    color: rgb(0, 0, 0);
+}
+
+#shop-button button::before,
+#shop-button button::after {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 35%;
-    height: 0%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s, visibility 0.35s, height 0.35s;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
+
+#shop-button button::before {
+    content: "";
+    background: rgb(255, 255, 255);
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#shop-button button:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
+/* ----------NAVBAR ------------*/
+
+.custom-nav {
+    position: fixed;
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+}
+
+.logo {
+    height: 6rem;
+
+}
+
+.nav_slide {
+    height: 100vh;
+    background-color: white;
+    width: 25%;
+    color: black;
+    padding: 1rem;
+    transition: all 700ms;
+    position: fixed;
+}
+
+i {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.link {
+    padding: 0.5rem;
+    color: black;
+}
+
+.show {
+    /* position: fixed; */
+    transform: translate(0px)
+}
+
+.hidden {
+    /* position: fixed; */
+    transform: translate(-500px)
+}
+
+.show-welcome {
+    transform: translate(250px);
+    transition: all 0.5s;
+}
+
+
+
+
+/* Conocenos */
+#conocenos {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 2rem 0rem;
+}
+
+#conocenos h3 {
+    font-weight: 700;
+}
+
+#conocenos p {
+    width: 70%;
+}
+
+#all-icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    width: 70%;
+
+}
+
+#all-icons h4 {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------ TARJETAS ----- */
+
+/*Dylan*/
+#jueguetes {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.card {
+    width: 35vh;
+    height: 30vh;
+    border-radius: 1em;
+    padding: 1.5rem;
+    background: #f5f5f5;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.4s ease-out;
+    box-shadow: 0px 7px 20px rgba(107, 69, 101, 0.281);
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.432);
+    z-index: 2;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.card-info {
+    position: relative;
+    z-index: 3;
+    color: #070707;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: 0.5s;
+}
+
+.text-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.text-body {
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    margin: 5px 0 15px 0;
+}
+
+.card-button {
+    padding: 0.6rem;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background: #f1eeee;
+    color: #000;
+    font-weight: bold;
+    transition: 0.4s ease;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fffefe;
+    background: linear-gradient(to bottom, #e7aeae, #ee9ca7);
+}
+
+.card:hover {
+    transform: translateY(10%);
+}
+
+.card:hover:before {
+    opacity: 1;
+}
+
+.card:hover .card-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-button:hover {
+    background: dodgerblue;
+    color: #ffffff;
+}
+
+.jueguetes {
+    width: 100%;
+    height: 100%;
+
+}
+
+.divPadreCarrucel {
+    width: 100vh;
+    height: 70vh;
+
+}
+
+/*Dylan*/

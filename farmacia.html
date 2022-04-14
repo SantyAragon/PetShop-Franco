@@ -12,20 +12,68 @@
 </head>
 
 <body>
-    <nav>
-        <a href="./index.html">Inicio</a>
-        <a href="./juguetes.html">Juguetes</a>
-        <a href="#">Farmacia</a>
-        <a href="./contactenos.html">Contáctenos</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">            
+                <div class="col-4">
+                    <a class="navbar-brand" href="#">Pet<span class="fw-bold">Shop</span> Franco</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
+
+                <div class="col ">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav col-8">
+                            <li class="nav-item col-2">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item dropdown col-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Juguetes
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Perros</a></li>
+                                    <li><a class="dropdown-item" href="#">Gatos</a></li>
+                                    <li><a class="dropdown-item" href="#">Otros</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item col-2">
+                                <a class="nav-link" href="#">Farmacia</a>
+                            </li>
+                            <li class="nav-item col-2">
+                                <a class="nav-link" href="#">Contacto</a>
+                            </li>
+                            <li class="nav-item col-2">
+
+
+                                    <button type="button" class="btn btn-primary btn-sm">Sing in</button>
+                                
+                            </li>
+                            
+                            <li class="car_shopping">
+                                <a href="http://">
+                                    <img src="./assets/car-shopping.png" alt="car shopping">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
+
+       
     </nav>
-    
-    
+   
 
 
+
+    <script src="https://kit.fontawesome.com/2544a6d2ae.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="./scripts/main.js"></script>
 </body>
 
