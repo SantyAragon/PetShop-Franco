@@ -14,12 +14,15 @@ Vue.createApp({
             //Carrousel
             carrouselActive: [],
             carrouselOne: [],
-            carrouselTwo: [],
+            carrouselPharmacyActive: [],
+            carrouselPharmacyOne: [],
 
             // CARRITO
             idProductosEnCarrito: [],
             productosEnCarrito: [],
             productosEnStorage: [],
+            precio: [],
+            precioTotal: 0,
 
             comprasEnStorage: [],
             cantidad: 0,
@@ -32,12 +35,10 @@ Vue.createApp({
                 // console.log(data.response)
 
                 this.allProducts = data.response
-                this.carrouselActive = data.response.filter(producto => producto.tipo == "Juguete").slice(0, 3)
-                this.carrouselOne = data.response.filter(producto => producto.tipo == "Juguete").slice(3, 6)
-                this.carrouselTwo = data.response.filter(producto => producto.tipo == "Juguete").slice(6, 8)
-                // console.log(this.carrouselActive)
-                // console.log(this.carrouselOne)
-                // console.log(this.carrouselTwo)
+                this.carrouselActive = data.response.filter(producto => producto.tipo == "Juguete").slice(0, 4)
+                this.carrouselOne = data.response.filter(producto => producto.tipo == "Juguete").slice(4, 8)
+                this.carrouselPharmacyActive = data.response.filter(producto => producto.tipo == "Medicamento").slice(0, 4)
+                this.carrouselPharmacyOne = data.response.filter(producto => producto.tipo == "Medicamento").slice(4, 8)
                 this.filtrarProductos()
                 this.filtrarPorPrecio()
 
@@ -46,7 +47,7 @@ Vue.createApp({
                 if (this.productosEnStorage) {
                     this.productosEnCarrito = this.productosEnStorage
                 }
-
+                this.PrecioCarrito();
                 this.productosComprados = JSON.parse(localStorage.getItem("compras"))
 
             })
@@ -94,12 +95,15 @@ Vue.createApp({
                 localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
 
             }
+
+            Swal.fire('Añadido al carrito')
             console.log(this.productosEnCarrito)
         },
         eliminarDelCarrito(producto) {
             this.productosEnCarrito = this.productosEnCarrito.filter(prod => prod._id != producto._id)
             this.productosEnStorage = this.productosEnCarrito
-            localStorage.setItem("carrito",JSON.stringify(this.productosEnStorage))
+            localStorage.setItem("carrito", JSON.stringify(this.productosEnStorage))
+            Swal.fire('Eliminado del Carrito')
 
         },
         comprarProductos() {
@@ -108,12 +112,41 @@ Vue.createApp({
                 this.comprasEnStorage.push(producto)
             })
             localStorage.setItem("compras", JSON.stringify(this.comprasEnStorage))
+
+            Swal.fire({
+                title: 'Muchas gracias por su compra!',
+                width: 600,
+                imageUrl: '../assets/gatito.png',
+                imageHeight: 250,
+                color: '#7a3d8b',
+                background: '#fc5b5b',
+                backdrop: `
+              rgba(0,0,123,0.4)
+              url("../assets/coffeti.png")
+              top
+              no-repeat
+            `,
+
+            })
+
+        },
+        PrecioCarrito() {
+            if (this.productosEnCarrito.length > 0) {
+                this.precio = this.productosEnCarrito.map(producto=> producto.precio)
+                this.precioTotal = this.precio.reduce((a, b) => a + b, 0)
+
+            } else {
+                this.precioTotal = 0
+            }
         },
     },
     computed: {
         actualizarCards() {
             this.filtrarPorPrecio()
-        }
+            this.PrecioCarrito()
+        },
+
+
     }
 }).mount("#app");
 

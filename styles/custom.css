@@ -665,6 +665,21 @@ article iframe {
 
 /* div creado por jose */
 /* aca comienzan los estilos aplicados al div responsable jose */
+
+#divPasosParaComprar{
+    /* padding-top: 3rem;
+    padding-bottom: 3rem; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: nowrap; */
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 3rem 0rem;
+    font-size: 1.5rem;
+}
+
+
 #contenido {
     background-color: rgba(226, 113, 47);
     height: 100%;
@@ -713,7 +728,6 @@ a:hover {
     padding: 2rem;
 }
 
-
 /* carousel */
 
 .contaiter-carousel-items {
@@ -722,10 +736,14 @@ a:hover {
 
 .carousel-img {
     padding: 1rem;
-    height: 20rem;
-    width: 20rem;
+    height: 15rem;
+    width: 15rem;
 }
-
+.container-img{
+    display : flex;
+    align-items: center;
+    justify-content: center;
+}
 .carrousel-text {
     text-align: center;
     height: 4rem;
@@ -744,3 +762,4 @@ a:hover {
 .carousel-control-prev {
     width: 5%
 }
+
