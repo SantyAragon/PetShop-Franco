@@ -16,13 +16,15 @@ body {
     margin: 0;
     padding: 0;
     /* background-color: var(--color9); */
-    background-color: var(--color7);
+    /* background-color: var(--color7); */
+    background: rgb(122, 61, 139);
+    background: radial-gradient(circle, rgba(122, 61, 139, 1) 0%, rgba(85, 207, 194, 1) 100%);
     min-width: 100%;
     min-height: 100vh;
 }
 
 #main {
-    background-color: white;
+    background: rgba(226, 113, 47);
 }
 
 #video {
@@ -186,7 +188,52 @@ nav i:hover {
 }
 
 
+/* Nav interno*/
 
+.internal_nav {
+    --br_top: 18px;
+    border-radius: var(--br_top) var(--br_top) 0 0;
+    /* margin-inline: 2rem; */
+
+
+    /* background: rgb(163, 161, 161); */
+
+
+}
+
+.internal_nav span {
+    color: var(--color1);
+    font-weight: bolder;
+}
+
+.internal_nav .nombre {
+    color: var(--color3);
+    font-family: 'Sigmar One', cursive;
+
+}
+
+.internal_nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.internal_nav .productos_links a {
+    color: black;
+}
+
+.logo_nav {
+    --logo: 4rem;
+    width: var(--logo);
+    height: var(--logo);
+}
+
+.car_shopping img {
+    width: 2rem;
+}
+.internal_nav .productos_link a{
+    color: var(--color3);
+     
+ }
 
 /* Conocenos */
 #conocenos {
@@ -196,7 +243,7 @@ nav i:hover {
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 2rem 0rem;
+    padding: 3rem 0rem;
     font-size: 1.5rem;
 }
 
@@ -342,15 +389,12 @@ nav i:hover {
 
 }
 
-.divPadreCarrucel {
-    width: 100vh;
-    height: 85vh;
 
-}
+
 
 /*Dylan*/
 
-/* Karo */
+/* Karo--Footer*/
 .iconoGoogle {
     width: 12rem;
 }
@@ -442,8 +486,7 @@ footer a:hover {
 
 /* aca pegalo xd te pego el form*/
 
-form {
-
+#contactenos {
 
     background: rgb(252, 91, 91);
     background: linear-gradient(0deg, rgba(252, 91, 91, 0.7847514005602241) 0%, rgba(195, 94, 219, 1) 100%);
@@ -574,7 +617,8 @@ article iframe {
     align-items: flex-start;
     padding: 20px;
     min-height: 250px;
-    background-color: var(--color8);
+    background: rgb(203, 231, 31);
+    background: linear-gradient(0deg, rgba(203, 231, 31, 1) 0%, rgba(38, 184, 131, 1) 73%);
 }
 
 .tag {
@@ -616,4 +660,87 @@ article iframe {
 #favorito :hover {
     transform: scale(1.3);
     transition: all 2s;
+}
+
+
+/* div creado por jose */
+/* aca comienzan los estilos aplicados al div responsable jose */
+#contenido {
+    background-color: rgba(226, 113, 47);
+    height: 100%;
+    width: 100%;
+}
+
+#contenedorTexto {
+    padding: 130px;
+    text-align: start;
+    color: #ffff;
+}
+
+#contenidoTextoPrincipal {
+    font-family: 'GalanoGrotesque', sans-serif;
+    font-size: 45px;
+    font-style: bold;
+    padding-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+a:hover {
+    color: #ffff
+}
+
+#contenidotextoParrafo {
+    font-family: 'GalanoGrotesque', sans-serif;
+    font-size: 29px;
+}
+
+#contenedorTextoBoton {
+    font-size: 24px;
+    margin: 0px, 100px;
+}
+
+#imgPerrito {
+    text-align: center;
+    border-radius: 1px, solid, #fd7e14;
+    padding: 25px;
+}
+
+#main-content {
+    padding: 2rem;
+}
+
+
+/* carousel */
+
+.contaiter-carousel-items {
+    display: flex;
+}
+
+.carousel-img {
+    padding: 1rem;
+    height: 20rem;
+    width: 20rem;
+}
+
+.carrousel-text {
+    text-align: center;
+    height: 4rem;
+}
+
+.container-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgb(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 300px;
+    margin: 1rem 4rem;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    width: 5%
 }
