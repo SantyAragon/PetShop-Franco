@@ -5,6 +5,8 @@ Vue.createApp({
             allProducts: [],
             productosFarmacia: [],
             productosJuguetes: [],
+            productosFarmaciaTienda: [],
+            productosJuguetesTienda: [],
 
             // MENOR A MAYOR EN PRECIO Y VICEVERSA
             productosOrdenadosFarmacia: [],
@@ -42,7 +44,10 @@ Vue.createApp({
                 this.carrouselOne = data.response.filter(producto => producto.tipo == "Juguete").slice(4, 8)
                 this.carrouselPharmacyActive = data.response.filter(producto => producto.tipo == "Medicamento").slice(0, 4)
                 this.carrouselPharmacyOne = data.response.filter(producto => producto.tipo == "Medicamento").slice(4, 8)
-               
+
+                this.productosJuguetesTienda = data.response.slice(3, 6)
+                this.productosFarmaciaTienda = data.response.slice(10, 13)
+
                 //filtro lo recibido para separar por tipo.
                 this.filtrarProductos()
                 this.filtrarPorPrecio()
@@ -208,7 +213,7 @@ if (document.URL.includes("contactenos")) {
     const BTN1 = document.querySelector("#BTN1")
 
     BTN1.addEventListener("click", function (event) {
-        event.preventDefault()
+
 
         Swal.fire({
             title: 'Gracias por enviarnos un mensaje! responderemos a la brevedad.',
