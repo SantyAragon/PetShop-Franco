@@ -91,6 +91,7 @@ Vue.createApp({
 
             if (producto.stock > 0) {
                 this.productosEnCarrito.push(producto)
+               
 
                 localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
 

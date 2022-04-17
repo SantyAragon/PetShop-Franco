@@ -27,7 +27,8 @@
                     <div class="col-4">
                         <img class="logo_nav bg-light rounded-circle ms-3" src="./assets/logo.png" alt="logo">
                         <a class="navbar-brand fs-1 fw-ligth text-light ms-2" href="#">Pet<span
-                                class="fs-1">Shop</span><span class="nombre fw-bold fs-1 text-light">Franco</span></a>
+                                class="fs-1">Shop</span><span class="nombre fw-bold fs-1 text-light">Franco</span>
+                        </a>
                     </div>
                     <div class="d-flex justify-content-around container ">
                         <a href="./index.html">Inicio</a>
@@ -44,13 +45,30 @@
                         <a href="./contactenos.html">Contacto</a>
 
                         <div class="nav-item">
-                            <button type="button" class="btn btn-primary btn-sm fs-5">Sing in</button>
-                        </div>
-                        <a class="nav-item car_shopping" href="#">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
+                            <!-- <button type="button" class="btn btn-primary btn-sm fs-5">Sing in</button> -->
+                            <div class="btn-group dropstart">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart fa-3x mx-3"></i>
+                                    <div class="mx-2 text-left">
+                                        <p class="m-0">Productos: ({{productosEnCarrito.length}})</p>
+                                        <p class="m-0">Total: $ {{precioTotal}}</p>
+                                    </div>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuButton">
+                                
 
-                    </div>
+                                        <li class="dropdown-item border border-dark" v-for="producto in productosEnCarrito">
+                                            <img :src="producto.imagen" alt="" width="50">
+                                            {{producto.nombre}} - ${{producto.precio}} <button href="#" class="btn btn-danger" @click="eliminarDelCarrito(producto)">X</button>
+                                        </li>
+
+
+                                        <li class="dropdown-item" id="listNav"> Total a pagar:  $ {{precioTotal}} || Productos: {{productosEnCarrito.length}} <button href="#" id="botoncinNav" class="btn btn-success" @click="comprarProductos">Comprar</button> </li>
+                                    
+                                </ul>
+                            </div>
+                            
                 </nav>
             </header>
             <section class="d-flex justify-content-center">
@@ -113,7 +131,7 @@
                         <option value="desde500">Desde $500</option>
                     </select>
                 </form>
-                <h3> total del carrito:  {{precioTotal}}</h3>
+                <h3> total del carrito: {{precioTotal}}</h3>
                 <h3>productos en el carrito (probando)</h3>
 
 
