@@ -19,10 +19,12 @@ body {
     background: radial-gradient(circle, rgba(122, 61, 139, 1) 0%, rgba(85, 207, 194, 1) 100%);
     min-width: 100%;
     min-height: 100vh;
+    font-family: 'Enriqueta', serif;
 }
 
 #main {
     background: white;
+    font-family: 'Enriqueta', serif;
 }
 
 #video {
@@ -179,7 +181,7 @@ nav i:hover {
 }
 
 .show-welcome {
-    margin-left: 10rem;
+    margin-left: 15rem;
     transition: all 0.1s;
 }
 
@@ -415,7 +417,7 @@ nav i:hover {
 }
 
 .show-conocenos {
-    padding-left: 25rem !important;
+    padding-left: 15rem !important;
 }
 
 #conocenos-info {
@@ -508,6 +510,7 @@ nav i:hover {
     align-items: stretch;
     align-content: stretch;
     margin-top: 3rem;
+    font-family: 'Enriqueta', serif;
 }
 
 .logo-footer {
