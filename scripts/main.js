@@ -24,6 +24,7 @@ Vue.createApp({
             productosEnCarrito: [],
             productosEnStorage: [],
             productoCarrito: {},
+            productoOriginal: [],
             precio: [],
             precioTotal: 0,
             totalEnCarrito: 0,
@@ -106,38 +107,51 @@ Vue.createApp({
             this.productoCarrito = this.productosEnCarrito.filter(prod => producto._id == prod._id)[0]
 
             // SI YA EXISTE EL PRODUCTO, LE INCREMENTO A CANTIDAD (DENTRO DEL CARRITO)
-            if (this.productoCarrito != undefined) {
-                this.productoCarrito.cantidad++;
-            }
-            // SI NO EXISTE EL PRODUCTO, INICIALIZO EL OBJETO CON LOS VALORES DEL PRODUCTO QUE VIENE DE PARAMETRO
-            else {
-                this.productoCarrito = {
-                    _id: producto._id,
-                    nombre: producto.nombre,
-                    precio: producto.precio,
-                    imagen: producto.imagen,
-                    cantidad: 1
-                };
-                // AGREGO EL OBJETO AL ARRAY DE PRODUCTOS
-                this.productosEnCarrito.push(this.productoCarrito);
-            }
-            // CALCULA EL TOTAL DE PRODUCTOS CON LA PROP CANTIDAD DENTRO DEL ARRAY DE PRODUCTOS 
-            this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
+            if (producto.stock > 0) {
+                if (this.productoCarrito != undefined) {
+                    this.productoCarrito.cantidad++;
+                    this.productoCarrito.stock = producto.stock -= 1
+                }
+                // SI NO EXISTE EL PRODUCTO, INICIALIZO EL OBJETO CON LOS VALORES DEL PRODUCTO QUE VIENE DE PARAMETRO
+                else {
+                    this.productoCarrito = {
+                        _id: producto._id,
+                        nombre: producto.nombre,
+                        precio: producto.precio,
+                        imagen: producto.imagen,
+                        cantidad: 1,
+                        stock: producto.stock -= 1
+                    };
 
-            // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
-            localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
-            //NOTIFICACION DE AÑADIDO AL CARRITO
-            Swal.fire('Añadido al carrito')
+                    // AGREGO EL OBJETO AL ARRAY DE PRODUCTOS
+                    this.productosEnCarrito.push(this.productoCarrito);
+                }
+
+                // CALCULA EL TOTAL DE PRODUCTOS CON LA PROP CANTIDAD DENTRO DEL ARRAY DE PRODUCTOS 
+                this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
+
+                // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
+                localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
+                //NOTIFICACION DE AÑADIDO AL CARRITO
+                Swal.fire('Añadido al carrito')
+            } else {
+                Swal.fire('Sin stock 😭')
+            }
         },
         //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO
         eliminarDelCarrito(producto) {
+            this.productoOriginal = this.productosEnCarrito.filter(prod => producto._id == prod._id)[0]
+            this.productosFarmacia.filter(prod => this.productoOriginal._id == prod._id)
             // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
             if (producto.cantidad > 1) {
                 producto.cantidad--
+                producto.stock++
+
             }
             // SINO, SE ELIMINA ESE OBJETO DEL ARRAY DE PRODUCTOS FILTRANDO LOS DISTINTOS AL SELECCIONADO
             else {
                 this.productosEnCarrito = this.productosEnCarrito.filter(prod => prod._id != producto._id)
+                producto.stock++
             }
             // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
             this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
@@ -210,11 +224,14 @@ Vue.createApp({
 
 if (document.URL.includes("contactenos")) {
 
+    const form = document.querySelector("#contactenos")
     const BTN1 = document.querySelector("#BTN1")
 
-    BTN1.addEventListener("click", function (event) {
+    BTN1.addEventListener("click", (event) => {
 
 
+
+        event.preventDefault()
         Swal.fire({
             title: 'Gracias por enviarnos un mensaje! responderemos a la brevedad.',
             width: 600,
@@ -229,9 +246,8 @@ if (document.URL.includes("contactenos")) {
           left bottom
           no-repeat
         `,
-
         })
 
-
+        form.reset()
     });
 }
