@@ -3,6 +3,7 @@ Vue.createApp({
         return {
             hideNav: true,
             allProducts: [],
+
             productosFarmacia: [],
             productosJuguetes: [],
             productosFarmaciaTienda: [],
@@ -40,6 +41,7 @@ Vue.createApp({
                 // console.log(data.response)
                 //guardo lo que me devuelve la api en una propiedad.
                 this.allProducts = data.response
+
 
                 this.carrouselActive = data.response.filter(producto => producto.tipo == "Juguete").slice(0, 4)
                 this.carrouselOne = data.response.filter(producto => producto.tipo == "Juguete").slice(4, 8)
@@ -133,20 +135,34 @@ Vue.createApp({
                 // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
                 localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
                 //NOTIFICACION DE AÑADIDO AL CARRITO
-                Swal.fire('Añadido al carrito')
+                Swal.fire({
+                    title: 'Añadido al carrito',
+                    icon: 'success'
+                })
             } else {
-                Swal.fire('Sin stock 😭')
+                Swal.fire({
+                    title: 'Sin stock ',
+                    icon: 'error'
+                })
             }
         },
         //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO
         eliminarDelCarrito(producto) {
-            this.productoOriginal = this.productosEnCarrito.filter(prod => producto._id == prod._id)[0]
-            this.productosFarmacia.filter(prod => this.productoOriginal._id == prod._id)
+            this.productoCarrito = this.productosEnCarrito.filter(prod => producto._id == prod._id)[0]
+            // this.productoOriginal = this.productosEnCarrito.filter(prod => producto._id == prod._id)
+            // this.productosFarmacia.filter(prod => this.productoOriginal._id == prod._id)
+            let index = this.productosJuguetes.findIndex(prod => prod._id == producto._id);
             // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
-            if (producto.cantidad > 1) {
-                producto.cantidad--
-                producto.stock++
+            console.log(this.productoCarrito)
+            console.log(index)
+            console.log(this.productosJuguetes[index])
 
+            if (this.productoCarrito.cantidad > 1) {
+                this.productoCarrito.cantidad--
+                this.productoCarrito.stock++
+                this.productosJuguetes[index].stock++
+
+                // this.productosEnCarrito.slice(index,this.productoCarrito)
             }
             // SINO, SE ELIMINA ESE OBJETO DEL ARRAY DE PRODUCTOS FILTRANDO LOS DISTINTOS AL SELECCIONADO
             else {
@@ -162,7 +178,11 @@ Vue.createApp({
             localStorage.setItem("carrito", JSON.stringify(this.productosEnStorage))
 
             //NOTIFICACION DE ELIMINADO DEL CARRITO
-            Swal.fire('Eliminado del Carrito')
+            Swal.fire({
+                title: 'Eliminado del Carrito',
+                imageUrl: 'https://cdn-icons-png.flaticon.com/512/105/105739.png',
+                imageHeight: 80,
+            })
         },
         comprarProductos() {
             //RECORRE EL ARRAY DE PRODUCTOS EN EL CARRITO Y AGREGA AL ARRAY COMPRAS EN LOC STORAGE
@@ -209,8 +229,14 @@ Vue.createApp({
         vaciarCarrito() {
             //VACIO EL ARRAY DE PRODUCTOS, CALCULO EL TOTAL EN CARRITO Y ACTUALIZO EL LOCAL STORAGE
             this.productosEnCarrito = []
+
+            this.productosOrdenadosFarmacia = this.allProducts.filter(producto => producto.tipo == "Medicamento")
+            this.productosOrdenadosJuguetes = this.allProducts.filter(producto => producto.tipo == "Juguete")
+
             this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
-            localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
+            localStorage.clear()
+            location.reload()
+            // localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
             Swal.fire('Se ha vaciado el carrito con exito')
         },
     },
@@ -218,6 +244,7 @@ Vue.createApp({
         actualizarCards() {
             this.filtrarPorPrecio()
             this.PrecioCarrito()
+            // this.vaciarCarrito()
         },
     }
 }).mount("#app");

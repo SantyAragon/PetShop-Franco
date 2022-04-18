@@ -5,13 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Sigmar+One&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Enriqueta&family=Fredoka+One&family=Quicksand&display=swap"
         rel="stylesheet">
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
+
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
@@ -19,7 +29,7 @@
     <title> Petshop | Franco - Juguetes</title>
 </head>
 
-<body>
+<body id="juguetes">
     <div id="app">
         <div id="main-content">
             <header class="header_interior">
@@ -45,44 +55,87 @@
                             <li><a href="./tienda.html">Tienda</a></li>
                             <li><a href="./contactenos.html">Contacto</a></li>
 
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
-                                    <div class="mx-2 text-left">
-                                        <p class="m-0">({{totalEnCarrito}})</p>
-                                        <p class="m-0">Total: ${{precioTotal}}</p>
-                                    </div>
-                                </button>
+                            <button class="canvas" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
-                                    aria-labelledby="dropdownMenuButton1">
+                                <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
+                                <div class="mx-2 text-left">
+                                    <p class="m-0">({{totalEnCarrito}})</p>
+                                    <p class="m-0">Total: ${{precioTotal}}</p>
 
+                            </button>
 
-                                    <li class="dropdown-item border border-dark m-0 p-0"
-                                        v-for="producto in productosEnCarrito">
-                                        <img :src="producto.imagen" alt="" width="50">
-                                        {{producto.nombre}} - ${{producto.precio}} -
-                                        cant:{{producto.cantidad}}<button href="#" class="btn btn-danger"
-                                            @click="eliminarDelCarrito(producto)">X</button>
-                                    </li>
-
-
-                                    <li class="dropdown-item m-0 p-0" id="listNav"> Total a pagar: $ {{precioTotal}} ||
-                                        Productos: {{totalEnCarrito}}
-                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                            class="btn btn-success ms-2" @click="comprarProductos">Comprar</button>
-                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                            class="btn btn-danger ms-2" @click="vaciarCarrito()">Vaciar</button>
-                                    </li>
-
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                                aria-labelledby="offcanvasRightLabel">
+                                <div class="offcanvas-header">
+                                    <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
                                 </div>
+                                <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+                                    <div class="p-3">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <th class="text-center">Imagen</th>
+                                                <th class="text-center">Producto</th>
+                                                <th class="text-center">Precio</th>
+                                                <th class="text-center">Cantidad</th>
+                                                <th class="text-center">Accion</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="producto in productosEnCarrito">
+                                                    <td><img :src="producto.imagen" class="rounded-circle" alt=""
+                                                            width="40"></td>
+                                                    <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                                                    <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                                                    <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                                                    <td>
+                                                        <div class="d-flex w-100 justify-content-evenly">
 
+                                                            <button class=" btn-info btn-sm"
+                                                                @click="añadirAlCarrito(producto)">
+
+                                                                +
+                                                            </button>
+                                                            <button class=" btn-danger btn-sm "
+                                                                @click="eliminarDelCarrito(producto)">
+                                                                -
+                                                            </button>
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                                                    </td>
+                                                    <td colspan="2">Productos: {{totalEnCarrito}}</td>
+                                                </tr>
+
+                                            </tfoot>
+
+
+
+
+                                        </table>
+
+                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                                            class="btn btn-success canvasButton "
+                                            @click="comprarProductos">Comprar</button>
+                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                                            class="btn btn-danger canvasButton "
+                                            @click="vaciarCarrito()">Vaciar</button>
+                                    </div>
+                                    <div>
+                                        <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- <a class="nav-item text-white" href="http://">
-                                    <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
-                                </a> -->
+
+
 
                         </ul>
                     </nav>
@@ -96,10 +149,11 @@
 
             <section class="d-flex justify-content-center">
 
-                <div id="carouselExampleInterval" class="carousel slide w-100 d-none d-sm-block" data-bs-ride="carousel">
+                <div id="carouselExampleInterval" class="carousel slide w-100 d-none d-sm-block"
+                    data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="contaiter-carousel-items">
+                            <div class="contaiter-carousel-items mt-5">
                                 <div class="container-item" v-for="item in carrouselActive">
                                     <div class="container-img">
                                         <img :src="item.imagen" class="carousel-img" alt="" srcset="" />
@@ -112,7 +166,7 @@
                         </div>
                         <div class="carousel-item">
                             <div class="contaiter-carousel-items">
-                                <div class="container-item" v-for="item in carrouselOne">
+                                <div class="container-item mt-5" v-for="item in carrouselOne">
                                     <div class="container-img">
                                         <img :src="item.imagen" class="carousel-img" alt="" srcset="" />
                                     </div>
@@ -139,7 +193,7 @@
             <section id="contenedor">
                 {{actualizarCards}}
 
-                <form  class= "d-flex justify-content-center m-5">
+                <form class="d-flex justify-content-center m-5">
                     <select name="" id="" v-model="filtroPrecio">
                         <p>filtrar</p>
                         <option value="all" selected>Filtrar por:</option>
@@ -152,7 +206,7 @@
 
                 <div class="d-flex justify-content-evenly align-content-evenly flex-wrap gap-5">
 
-                    <div class="card" v-for="producto in productosOrdenadosJuguetes">
+                    <div class="card borde" v-for="producto in productosOrdenadosJuguetes">
                         <!-- <i id="favorito" class="fa-solid fa-heart"></i> -->
                         <img :src="producto.imagen" alt="rover" />
 
@@ -160,19 +214,19 @@
                             <span v-if="producto.stock<=5 & producto.stock>0" class="tag tag-poco-stock">ultimas
                                 unidades!!!</span>
                             <span v-if="producto.stock == 0" class="tag tag-agotado">Agotado 😢</span>
-                            <h4>
+                            <h4 class="h4">
                                 {{producto.nombre}}
                             </h4>
-                            <p>
+                            <p class="fs-6">
                                 {{producto.descripcion}}
                             </p>
                             <h5>$ {{producto.precio}}</h5>
                             <h5>Stock: {{producto.stock}}</h5>
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center mt-3">
                                 <!-- <i class="fa-solid fa-angle-left"></i> -->
                                 <!-- <input type="number" placeholder="1" name="cantidad" min="1" :max="producto.stock"> -->
                                 <!-- <i class="fa-solid fa-angle-right"></i></div> -->
-                                <button class="card-button align-self-center ms-3"
+                                <button id="buttonJuguetes" class="card-button ms-3"
                                     @click="añadirAlCarrito(producto)">Añadir al carrito</button>
                             </div>
                         </div>

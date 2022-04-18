@@ -16,11 +16,12 @@
 <body id="tienda">
   <header class="header_interior">
     <div class="logo__header-interior">
-      <a class="navbar-brand fs-3 fw-ligth text-light  d-flex align-items-center" href="./index.html">
-        <img class="logo_nav bg-light rounded-circle ms-3" src="./assets/logo.png" alt="logo">
-        <h1 class="ms-2 fs-3">Pet<span class="fs-2 shop">Shop</span><span class="nombre fs-3 text-light">Franco</span>
-        </h1>
-      </a>
+        <a class="navbar-brand fs-3 fw-ligth text-light  d-flex align-items-center" href="#">
+            <img class="logo_nav bg-light rounded-circle ms-3" src="./assets/logo.png" alt="logo">
+            <h1 class="ms-2 fs-3">Pet<span class="fs-2 shop">Shop</span><span
+                    class="nombre fs-3 text-light">Franco</span>
+            </h1>
+        </a>
     </div>
 
 
@@ -28,27 +29,97 @@
 
     <div class="nav_interior">
 
-      <nav>
-        <ul>
-          <li><a href="./index.html">Inicio</a></li>
-          <li><a href="./juguetes.html">Juguetes</a></li>
-          <li><a href="./farmacia.html">Farmacia</a></li>
-          <li><a href="./tienda.html">Tienda</a></li>
-          <li><a href="./contactenos.html">Contacto</a></li>
-          <li>
-            <a class="nav-item text-white" href="http://">
-              <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+            <ul class="align-items-center">
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="./juguetes.html">Juguetes</a></li>
+                <li><a href="./farmacia.html">Farmacia</a></li>
+                <li><a href="./tienda.html">Tienda</a></li>
+                <li><a href="./contactenos.html">Contacto</a></li>
+
+                <button class="canvas" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+
+                    <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
+                    <div class="mx-2 text-left">
+                        <p class="m-0">({{totalEnCarrito}})</p>
+                        <p class="m-0">Total: ${{precioTotal}}</p>
+
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+
+                        <table class="table table-dark table-striped table-hover">
+                            <thead>
+                                <th class="text-center">Imagen</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="producto in productosEnCarrito">
+                                    <td><img :src="producto.imagen" class="rounded-circle" alt=""
+                                            width="40"></td>
+                                    <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                                    <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                                    <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                                    <td>
+                                        <div style="text-align: center " class="d-flex">
+                                        
+                                            <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
+                                            
+                                              +
+                                            </button>
+                                            <button class=" btn-danger btn-sm ms-1" @click="eliminarDelCarrito(producto)">  
+                                              -
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                                    </td>
+                                    <td colspan="2">Productos: {{totalEnCarrito}}</td>
+                                </tr>
+
+                            </tfoot>
+
+
+
+
+                        </table>
+
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
+
+                    </div>
+                </div>
+
+
+
+
+            </ul>
+        </nav>
 
     </div>
 
     <label for="nav-toggle" class="nav-toggle-label">
-      <span></span>
+        <span></span>
     </label>
-  </header>
+</header>
   <div id="app">
 
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-aos="zoom-in"
@@ -91,30 +162,30 @@
       </button>
     </div>
 
-    <div class="d-flex justify-content-evenly mt-5" data-aos="zoom-in" data-aos-duration>
-      <img src="./assets/banner-1.png" alt="mediosDePagos">
-      <img src="./assets/banner-2.jpg" alt="tarjetasPagos">
-      <img class=" ms-5" src="./assets/banner-3.jpg" alt="envios">
-      <img src="./assets/banner-4-(3).jpg" alt="consultas">
+    <div class=" mt-5" data-aos="zoom-in" data-aos-duration>
+      <img class="col-3" src="./assets/banner-1.png" alt="mediosDePagos">
+      <img class="col-3" src="./assets/banner-2.jpg" alt="tarjetasPagos">
+      <img class="col-3" src="./assets/banner-3.jpg" alt="envios">
+      <img class="col-3" src="./assets/banner-4-(3).jpg" alt="consultas">
     </div>
     <div data-aos="zoom-in" data-aos-duration>
       <h4 class="contenedorDestacados mt-5 h3" data-aos="zoom-in" data-aos-duration="2000">Algunas marcas con las que
         trabajamos</h4>
     </div>
     <div>
-      <div class="d-flex justify-content-evenly mt-3">
-        <img class="logosVital" src="./assets/3-Vital-can-logo.png" alt="alimentoVital">
-        <img class="logosAlimentos mt-5 ms-3" src="./assets/Advance-PNG.png" alt="alimentoA">
-        <img class="logosAlimentosk ms-3 mt-4" src="./assets/essentials.png" alt="alimentoE">
-        <img class="logosKongo mt-4" src="./assets/kongo.png" alt="alimentoK">
-        <img class="logosAlimentosk ms-1 mt-4" src="./assets/logo-estampa2.jpg" alt="alimentoE">
+      <div class="marcasAlimentos d-flex justify-content-evenly mt-3">
+        <img class="logoAlimento logosVital" src="./assets/3-Vital-can-logo.png" alt="alimentoVital">
+        <img class="logoAlimento logosAlimentos mt-5 ms-3" src="./assets/Advance-PNG.png" alt="alimentoA">
+        <img class="logoAlimento logosAlimentosk ms-3 mt-4 " src="./assets/essentials.png" alt="alimentoE">
+        <img class="logoAlimento logosKongo mt-4 " src="./assets/kongo.png" alt="alimentoK">
+        <img class="logoAlimento logosAlimentosk ms-1 mt-4 " src="./assets/logo-estampa2.jpg" alt="alimentoE">
       </div>
-      <div class="d-flex justify-content-evenly mt-3 mb-3">
-        <img class="logosAlimentos mt-3 mt-5" src="./assets/logo-new-es.png" alt="alimentoEquilibrio">
-        <img class="logosVital ms-3" src="./assets/meraki-logo-eukanuba.png" alt="alimentoEukanuba">
-        <img class="logosAlimentosP ms-3 mt-4" src="./assets/purina-logo-round.png" alt="alimentoP">
-        <img class="logosAlimentosR mt-3 ms-4 " src="./assets/Royal-Canin-Logo.png" alt="alimentoRoyal">
-        <img class="logosAlimentosR mt-3 ms-4 " src="./assets/whiskas.png" alt="alimentoW">
+      <div class="marcasAlimentos d-flex justify-content-evenly mt-3 mb-3">
+        <img class="logoAlimento logosAlimentos mt-3 mt-5" src="./assets/logo-new-es.png" alt="alimentoEquilibrio">
+        <img class="logoAlimento logosVital ms-3" src="./assets/meraki-logo-eukanuba.png" alt="alimentoEukanuba">
+        <img class="logoAlimento logosAlimentosP ms-3 mt-4 " src="./assets/purina-logo-round.png" alt="alimentoP">
+        <img class="logoAlimento logosAlimentosR mt-3 ms-4 " src="./assets/Royal-Canin-Logo.png" alt="alimentoRoyal">
+        <img class="logoAlimento logosAlimentosR mt-3 ms-4 " src="./assets/whiskas.png" alt="alimentoW">
       </div>
     </div>
 
@@ -159,7 +230,7 @@
       </div>
     </div>
 
-    <div id="carouselExampleCaptions" class="carousel slide mt-3" data-bs-ride="carousel" data-aos="zoom-in"
+    <div id="carouselExampleCaptions" class="carousel slide mt-3 d-none d-sm-block" data-bs-ride="carousel" data-aos="zoom-in"
       data-aos-duration="2000">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -235,31 +306,10 @@
       </button>
     </div>
 
-
-
-    <div class="d-flex justify-content-evenly mt-3" data-aos="zoom-in" data-aos-duration="2000">
-      <div class="text-center">
-        <img src="./assets/cat.jpg" alt="cat">
-        <p>Agregá a tu carrito</p>
-        <p>los productos que necesitas</p>
-      </div>
-      <div class="text-center">
-        <img src="./assets/pet.jpg" alt="pet">
-        <p>Elegí el medio de pago que desees</p>
-        <p>y aprovechá nuestras promos.</p>
-      </div>
-      <div class="text-center">
-        <img src="./assets/catydog.jpg" alt="catydog">
-        <p>Recibi tu pedido o</p>
-        <p>coordiná un punto de retiro.</p>
-      </div>
-    </div>
-
-
     <div class="row d-flex parrafoTiendaDiferencia justify-content-center align-items-center">
       <div class=" col-6 mt-5 d-inline wap" data-aos="fade-down" data-aos-duration="2000">
         <h4 class="h2 mb-5">¿Qué nos diferencia?</h4>
-        <div class="w-50 h6">
+        <div class="text-break w-50 h6 container-title-responsive">
           <h5 class="h4 mb-3 mt-5" id="tituloTiendaDiferencia">Experiencia</h5>
           <p style="font-weight: 400;font-size: 22px">Creemos que el hecho de trabajar durante 8 años con éxito nos
             permite afirmar que <strong>contamos con la experiencia suficiente y necesaria</strong> para este servicio,
@@ -267,7 +317,7 @@
             cuestiones logísticas y legales, hasta pequeños detalles para que tu mascota tenga una salud excelente
           </p>
         </div>
-        <div class="w-50 h6 mt-5">
+        <div class="w-50 h6 mt-5 container-title-responsive">
           <h5 class="h4 mb-3" id="tituloTiendaDiferencia">Compromiso</h5>
           <p style="font-weight: 400;font-size: 22px">De la misma manera en la que nos
             comprometemos 100% con la salud de los consentidos del hogar,
@@ -277,7 +327,7 @@
             compra.
           </p>
         </div>
-        <div class="w-50 h6">
+        <div class="w-50 h6 container-title-responsive">
           <h5 class="h4 mb-3 mt-5" id="tituloTiendaDiferencia">Amor</h5>
           <p style="font-weight: 400;font-size: 22px">Por último, lo más importante,
             <strong>nos consideramos fieles amantes de
@@ -293,6 +343,22 @@
 
     </div>
 
+    <div class="d-flex justify-content-evenly text-center" id="divPasosParaComprar"
+    v-bind:class="hideNav ? '': 'show-conocenos'" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="text-center item-container">
+      <img class="w-100" src="./assets/cat.jpg" alt="agrega a tu carrito" />
+      <p class="h6">Agrega a tu carrito los productos que necesitas.</p>
+    </div>
+
+    <div class="text-center item-container">
+      <img class="w-100" src="./assets/pet.jpg" alt="elige el medio de pago" />
+      <p class="h6">Elegi el medio de pago que desees y aprovecha nuestras promos.</p>
+    </div>
+
+    <div class="text-center item-container ">
+      <img class="w-100" src="./assets/catydog.jpg" alt="recibe tu pedido" />
+      <p class="h6">Recibi tu pedido o coordina un punto de retiro.</p>
+    </div>
   </div>
 
   <footer class="text-white">
