@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,27 +14,17 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-
-
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles/custom.css">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <title> Petshop | Franco - Juguetes</title>
 </head>
 
-<body id="juguetes">
-    <div class="spinner" id="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div id="app" data-aos="fade-down" data-aos-duration="2000">
+<body id="farmacia">
+
+    <div id="app">
         <div id="main-content">
             <header class="header_interior">
                 <div class="logo__header-interior">
@@ -85,7 +74,7 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+                <div class="offcanvas-body d-flex flex-column justify-content-between ">
                     <div class="p-3">
                         <table class="table table-hover">
                             <thead>
@@ -113,6 +102,7 @@
                                             </button>
                                         </div>
                                     </td>
+
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -121,7 +111,9 @@
                                     </td>
                                     <td colspan="2">Productos: {{totalEnCarrito}}</td>
                                 </tr>
+
                             </tfoot>
+
                         </table>
 
                         <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
@@ -135,8 +127,8 @@
                 </div>
             </div>
 
-            <section class="d-flex justify-content-center">
 
+            <section class="d-flex justify-content-center">
                 <div id="carouselExampleInterval" class="carousel slide w-100 d-none d-sm-block"
                     data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -153,8 +145,8 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="contaiter-carousel-items">
-                                <div class="container-item mt-5" v-for="item in carrouselOne">
+                            <div class="contaiter-carousel-items mt-5">
+                                <div class="container-item" v-for="item in carrouselOne">
                                     <div class="container-img">
                                         <img :src="item.imagen" class="carousel-img" alt="" srcset="" />
                                     </div>
@@ -176,9 +168,8 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-
             </section>
-
+            
             <section id="contenedor">
                 {{actualizarCards}}
 
@@ -196,24 +187,26 @@
                 <div class="d-flex justify-content-evenly align-content-evenly flex-wrap gap-5">
 
                     <div class="card borde" v-for="producto in productosOrdenadosJuguetes">
-
+                        <!-- <i id="favorito" class="fa-solid fa-heart"></i> -->
                         <img :src="producto.imagen" alt="rover" />
 
                         <div class="card-body">
                             <span v-if="producto.stock<=5 & producto.stock>0" class="tag tag-poco-stock">ultimas
                                 unidades!!!</span>
                             <span v-if="producto.stock == 0" class="tag tag-agotado">Agotado 😢</span>
-                            <h4 class="h4">
+                            <h4>
                                 {{producto.nombre}}
                             </h4>
-                            <p class="fs-6">
+                            <p>
                                 {{producto.descripcion}}
                             </p>
                             <h5>$ {{producto.precio}}</h5>
                             <h5>Stock: {{producto.stock}}</h5>
-                            <div class="d-flex justify-content-center mt-3">
-
-                                <button id="buttonJuguetes" class="card-button ms-3"
+                            <div class="d-flex justify-content-center">
+                                <!-- <i class="fa-solid fa-angle-left"></i> -->
+                                <!-- <input type="number" placeholder="1" name="cantidad" min="1" :max="producto.stock"> -->
+                                <!-- <i class="fa-solid fa-angle-right"></i></div> -->
+                                <button id="buttonJuguetes" class="card-button align-self-center ms-3"
                                     @click="añadirAlCarrito(producto)">Añadir al carrito</button>
                             </div>
                         </div>
@@ -257,7 +250,7 @@
                 <p class="fs-5">realizamos envíos por encomienda a todo el país con la empresa transportista que el
                     cliente elija.</p>
                 <p class="fs-5"> Si el despacho se hace desde Retiro tiene un costo adicional.</p>
-                <p class="fs-5">El costo del despachp es a cargo del comprador.</p>
+                <p class="fs-5">El costo del despacho es a cargo del comprador.</p>
             </article>
             <article>
                 <h4 class="h3 mb-2 mt-5 textoColorFarmacia">Envío en el día</h4>
@@ -340,7 +333,10 @@
                 </div>
             </div>
         </footer>
+
     </div>
+
+
 
     <script src="https://kit.fontawesome.com/2544a6d2ae.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -352,6 +348,7 @@
         AOS.init();
     </script>
     <script src="./scripts/main.js"></script>
+
 </body>
 
 </html>

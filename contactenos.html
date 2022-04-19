@@ -20,9 +20,9 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<body id="contacteseniore">
+<body id="farmacia">
+
     <div id="app">
-        {{actualizarCards}}
         <div id="main-content">
             <header class="header_interior">
                 <div class="logo__header-interior">
@@ -73,72 +73,72 @@
             </header>
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-            aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
-                <div class="p-3">
-                    <table class="table table-hover">
-                        <thead>
-                            <th class="text-center">Imagen</th>
-                            <th class="text-center">Producto</th>
-                            <th class="text-center">Precio</th>
-                            <th class="text-center">Cantidad</th>
-                            <th class="text-center">Accion</th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="producto in productosEnCarrito">
-                                <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
-                                <td class="pt-3 text-center"> {{producto.nombre}}</td>
-                                <td class="pt-3 text-center"> ${{producto.precio}}</td>
-                                <td class="pt-3 text-center">{{producto.cantidad}} </td>
-                                <td>
-                                    <div class="d-flex w-100 justify-content-evenly">
-
-                                        <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
-
-                                            +
-                                        </button>
-                                        <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
-                                            -
-                                        </button>
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
-                                </td>
-                                <td colspan="2">Productos: {{totalEnCarrito}}</td>
-                            </tr>
-
-                        </tfoot>
-
-
-
-
-                    </table>
-
-                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                        class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
-                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                        class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
+                aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
                 </div>
-                <div>
-                    <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+                <div class="offcanvas-body d-flex flex-column justify-content-between ">
+                    <div class="p-3">
+                        <table class="table table-hover">
+                            <thead>
+                                <th class="text-center">Imagen</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="producto in productosEnCarrito">
+                                    <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
+                                    <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                                    <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                                    <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                                    <td>
+                                        <div class="d-flex w-100 justify-content-evenly">
+
+                                            <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
+
+                                                +
+                                            </button>
+                                            <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
+                                                -
+                                            </button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                                    </td>
+                                    <td colspan="2">Productos: {{totalEnCarrito}}</td>
+                                </tr>
+
+                            </tfoot>
+
+
+
+
+                        </table>
+
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
+                    </div>
+                    <div>
+                        <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
-            <h1 class="text-center mt-4 contacto">Contactanos!</h1>
+            <h1 id="textoColorContacto" class="text-center mt-4 contacto h1">Contactanos!</h1>
             <div id="basco" class="d-flex justify-content-center align-items-center">
 
                 <form id="contactenos" class="row g-3 w-25 align-self-center p-3 mt-5 flex-wrap" data-aos="zoom-in"
@@ -196,13 +196,13 @@
                 </form>
 
 
-                <article class="ps-3 ms-3 align-self-center ow g-3 w-25 ">
-                    <p class="d-none d-md-block">Formulario de contacto! ante cualquier duda envianos un mensaje y te
+                <article class="ps-3 ms-5 align-self-center g-3 w-25 ">
+                    <p class="d-none d-md-block fs-5">Formulario de contacto! ante cualquier duda envianos un mensaje y te
                         responderemos lo mas rapido
                         posible!
                     </p>
-                    <p class="d-none d-md-block">Ante emergencias nuestra direccion es: Rio de Janeiro N°300
-                        (Caballito), guardias 24hs.</p>
+                    <p class="d-none d-md-block fs-5 mt-5">Ante emergencias nuestra direccion es: <strong>Rio de Janeiro N°300
+                        (Caballito), guardias 24hs.</strong></p>
                     <iframe class="d-none d-md-block"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.6869258109523!2d-58.43257238477008!3d-34.612077380457414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca429815227f%3A0x5d302e497c2cda87!2sR%C3%ADo%20de%20Janeiro%20300%2C%20C1405CCB%20CABA!5e0!3m2!1ses-419!2sar!4v1649948522581!5m2!1ses-419!2sar"
                         width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -283,8 +283,11 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="./scripts/main.js"></script>
-
 
 </body>
 

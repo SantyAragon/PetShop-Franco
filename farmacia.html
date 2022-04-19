@@ -81,7 +81,7 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+                <div class="offcanvas-body d-flex flex-column justify-content-between ">
                     <div class="p-3">
                         <table class="table table-hover">
                             <thead>
@@ -184,19 +184,8 @@
             </section>
             <section id="contenedor">
                 {{actualizarCards}}
-                
-                <div class="field has-addons is-pulled-right">
-
-                <div class="control">
-                    <input type="text" class="input is-rounded">
-                </div>     
-                <button class="button is-success is-rounded" v-on:click="fetch">
-                    Buscador
-                </button>
-                </div>
-
                 <form class="d-flex justify-content-center m-5">
-                    <select name="" id="" v-model="filtroPrecio">
+                    <select name="" id="select" class="rounded-pill" v-model="filtroPrecio">
                         <p>filtrar</p>
                         <option value="all" selected>Filtrar por:</option>
                         <option value="Mayor a Menor">Precio Ascendente</option>
@@ -205,8 +194,6 @@
                         <option value="desde500">Desde $500</option>
                     </select>
                 </form>
-
-
 
                 <div class="d-flex justify-content-evenly align-content-evenly flex-wrap gap-5">
 
@@ -241,8 +228,7 @@
 
         <p class="contenedorDestacados mt-5 mb-5 h3" data-aos="zoom-in" data-aos-duration="2000"></p>
 
-        <div class="d-flex justify-content-evenly mt-5" data-aos="zoom-in"
-            data-aos-duration="2000">
+        <div class="d-flex justify-content-evenly mt-5" data-aos="zoom-in" data-aos-duration="2000">
             <div class="text-center">
                 <i class="fa-solid fa-dog iconosAnimal"></i>
                 <h4 class="mt-3 h2 textoColorFarmacia">Variedad</h4>
@@ -272,18 +258,22 @@
                 <p class="fs-5">en C.A.B.A y G.B.A. si tu compra supera los $3500.</p>
                 <p class="fs-5"><span>Por compras menores a $3500</span>, consultá el costo de envío telefónico </p>
                 <p class="fs-5">al <span>0810-888-7387 o vía Whatsapp al 11-2040-1240.</span></p>
-                <p class="fs-5">realizamos envíos por encomienda a todo el país con la empresa transportista que el cliente elija.</p>
+                <p class="fs-5">realizamos envíos por encomienda a todo el país con la empresa transportista que el
+                    cliente elija.</p>
                 <p class="fs-5"> Si el despacho se hace desde Retiro tiene un costo adicional.</p>
                 <p class="fs-5">El costo del despachp es a cargo del comprador.</p>
             </article>
             <article>
                 <h4 class="h3 mb-2 mt-5 textoColorFarmacia">Envío en el día</h4>
-                <p class="fs-5">Realiza tu pedido antes de las 12 hs. y recibilo en tu casa el mismo día.Válido para C.A.B.A y G.B.A.</p>
+                <p class="fs-5">Realiza tu pedido antes de las 12 hs. y recibilo en tu casa el mismo día.Válido para
+                    C.A.B.A y G.B.A.</p>
                 <h5 class="h4 mt-3 mb-2">Condiciones:</h5>
                 <ul>
-                    <li>De lunes a sábado realizando tu pedido de 0 a 12hs., lo recibís el mismo día entre las 14 y 21 hs.</li>
+                    <li>De lunes a sábado realizando tu pedido de 0 a 12hs., lo recibís el mismo día entre las 14 y 21
+                        hs.</li>
                     <li>De lunes a viernes realizando tu pedido entre las 12 y 24 hs., lo recibís al siguiente.</li>
-                    <li>Los pedidos realizados los sábados a partir de las 12 hs. y domingos los recibís el día lunes.</li>
+                    <li>Los pedidos realizados los sábados a partir de las 12 hs. y domingos los recibís el día lunes.
+                    </li>
                     <li>Día feriado no aplica.</li>
                     <li>Lujan, Campana, La Plata y Rosario quedan exceptuados.</li>
                 </ul>
@@ -367,7 +357,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-      </script>
+    </script>
     <script src="./scripts/main.js"></script>
 
 </body>

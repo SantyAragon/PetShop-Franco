@@ -56,15 +56,16 @@
         <source
           src="//cdn.shopify.com/s/files/1/0532/3603/9855/t/1/assets/Stocksy_txp4f02778b0p9300_h264_720p_2763788_2.mov?v=10960407530734239773" />
       </video>
+      <div data-aos="flip-up" data-aos-duration="2000">
+        <div id="welcome" v-bind:class="hideNav ? '': 'show-welcome'">
+          <h1>
+            BIENVENIDOS <br />
+            PETSHOP FRANCO
+          </h1>
 
-      <div id="welcome" v-bind:class="hideNav ? '': 'show-welcome'" data-aos="flip-up" data-aos-duration="2000">
-        <h1>
-          BIENVENIDOS <br />
-          PETSHOP FRANCO
-        </h1>
-
-        <div id="shop-button">
-          <button> <a href="./tienda.html">Tienda</a></button>
+          <div id="shop-button">
+            <button> <a href="./tienda.html">Tienda</a></button>
+          </div>
         </div>
       </div>
     </section>

@@ -120,6 +120,7 @@ body {
 
 .offcanvas {
     width: 30%;
+    height: 100vh;
 }
 
 
@@ -640,6 +641,10 @@ input {
     margin: 0;
     padding: 0;
 }
+form{
+    color: white;
+
+}
 
 #contacteseniore {
     font-weight: 900;
@@ -746,7 +751,14 @@ button:hover .button-text {
 
 article iframe {
     box-shadow: rgba(0, 0, 0, 0.4) 3px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
+    margin-top: 2rem;
+}
+article iframe:hover {
+    transform: scale(1.20);
+    z-index: 1000;
+}
+.ow{
+    margin-left: 2rem;
 }
 
 
@@ -806,8 +818,12 @@ article iframe {
     }
 }
 
-.textoColorFarmacia {
+.textoColorFarmacia{
     color: #f37b21;
+}
+
+#textoColorContacto{
+    color:#c35edb;
 }
 
 .contenedorDeliveryFarmacia {
@@ -879,6 +895,7 @@ article iframe {
     background-color: var(--color4);
     /* height: 50vh; */
     width: 100%;
+    justify-content: space-evenly;
 }
 
 
@@ -1491,14 +1508,20 @@ nav {
     color: var(--color1);
 }
 
+
 #select:hover:before,
 #select:focus:before {
     transition: 0.5s all ease;
     left: 0;
     right: 0;
     opacity: 1;
+    color: var(--color1);
 }
 
 #select:active {
     transform: scale(0.9);
+}
+
+#main-content {
+    box-sizing: border-box;
 }
