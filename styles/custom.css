@@ -325,6 +325,10 @@ nav i:hover {
     background-color: #2fb38e;
 }
 
+.offcanvas-header {
+    background-color: #2fb38e;
+}
+
 .nav_interior a:hover {
     color: var(--color2);
 }
@@ -642,6 +646,12 @@ input {
     color: white;
     background: rgb(247, 222, 209);
     background: radial-gradient(circle, rgba(247, 222, 209, 1) 0%, rgba(195, 94, 219, 1) 79%);
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100vh;
+    font-family: 'Enriqueta', serif;
 
 
 }
@@ -767,6 +777,46 @@ article iframe {
     background: radial-gradient(circle, rgba(255, 233, 95, 1) 20%, rgba(47, 179, 142, 1) 100%);
 }
 
+.iconosAnimal {
+    color: #c35edb;
+    font-size: 3rem;
+    display: inline-block;
+    animation: movimientoHorizontal 6s ease-in-out infinite;
+}
+
+.fa {
+    animation-delay: 1s;
+}
+
+@keyframes movimientoHorizontal {
+    0% {
+        transform: translatex(0);
+    }
+
+    25% {
+        transform: translatex(+60px);
+    }
+
+    50% {
+        transform: translatex(-30px);
+    }
+
+    100% {
+        transform: translatex(0);
+    }
+}
+
+.textoColorFarmacia {
+    color: #f37b21;
+}
+
+.contenedorDeliveryFarmacia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .tag {
     background: #cccccc;
     border-radius: 50px;
@@ -826,7 +876,7 @@ article iframe {
 
 
 #contenido {
-    background-color: var(--color7);
+    background-color: var(--color4);
     /* height: 50vh; */
     width: 100%;
 }
@@ -845,7 +895,7 @@ article iframe {
 
 #contenidoTextoPrincipal {
     /* font-family: 'GalanoGrotesque', sans-serif; */
-    font-size: 2rem;
+    /* font-size: 2rem; */
     font-style: bold;
     padding-bottom: 1rem;
 }
@@ -862,7 +912,7 @@ a:hover {
 
 #contenidotextoParrafo {
     /* font-family: 'GalanoGrotesque', sans-serif; */
-    font-size: 1.7rem;
+    /* font-size: 1.7rem; */
 }
 
 #contenedorTextoBoton {
@@ -1323,13 +1373,132 @@ a:hover {
     background-size: contain;
 }
 
-.nav_interior a,nav {
+.nav_interior a,
+nav {
     font-family: 'Bebas Neue', cursive;
     font-size: 1.5rem;
 }
-#backgroundCanva{
+
+#backgroundCanva {
     width: 100%;
 }
+
 .offcanvas-body {
-    background-color:#F1E9B9;
+    background-color: #F1E9B9;
+}
+
+#farmacia,
+#juguetes {
+    background-image: url(../assets/backgroundPrueba2.png);
+    background-repeat: repeat-y;
+
+}
+
+#loader {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner-desactive {
+    display: none !important;
+}
+
+.spinner {
+    --clr: rgb(0, 113, 128);
+    --gap: 6px;
+    /* gap between each circle */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.spinner span {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: var(--clr);
+    opacity: 0;
+}
+
+.spinner span:nth-child(1) {
+    animation: fade 1s ease-in-out infinite;
+}
+
+.spinner span:nth-child(2) {
+    animation: fade 1s ease-in-out 0.33s infinite;
+}
+
+.spinner span:nth-child(3) {
+    animation: fade 1s ease-in-out 0.66s infinite;
+}
+
+
+
+@keyframes fade {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+}
+
+#select {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid var(--color1);
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: var(--color1);
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+#select:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: var(--color1);
+    z-index: -1;
+}
+
+#select:hover,
+#select:focus {
+    color: var(--color1);
+}
+
+#select:hover:before,
+#select:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+#select:active {
+    transform: scale(0.9);
 }

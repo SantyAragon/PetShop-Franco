@@ -16,7 +16,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
 
 
@@ -30,7 +30,12 @@
 </head>
 
 <body id="juguetes">
-    <div id="app">
+    <div class="spinner" id="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div id="app" data-aos="fade-down" data-aos-duration="2000">
         <div id="main-content">
             <header class="header_interior">
                 <div class="logo__header-interior">
@@ -62,81 +67,7 @@
                                 <div class="mx-2 text-left">
                                     <p class="m-0">({{totalEnCarrito}})</p>
                                     <p class="m-0">Total: ${{precioTotal}}</p>
-
                             </button>
-
-                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                                aria-labelledby="offcanvasRightLabel">
-                                <div class="offcanvas-header">
-                                    <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
-                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
-                                    <div class="p-3">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <th class="text-center">Imagen</th>
-                                                <th class="text-center">Producto</th>
-                                                <th class="text-center">Precio</th>
-                                                <th class="text-center">Cantidad</th>
-                                                <th class="text-center">Accion</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="producto in productosEnCarrito">
-                                                    <td><img :src="producto.imagen" class="rounded-circle" alt=""
-                                                            width="40"></td>
-                                                    <td class="pt-3 text-center"> {{producto.nombre}}</td>
-                                                    <td class="pt-3 text-center"> ${{producto.precio}}</td>
-                                                    <td class="pt-3 text-center">{{producto.cantidad}} </td>
-                                                    <td>
-                                                        <div class="d-flex w-100 justify-content-evenly">
-
-                                                            <button class=" btn-info btn-sm"
-                                                                @click="añadirAlCarrito(producto)">
-
-                                                                +
-                                                            </button>
-                                                            <button class=" btn-danger btn-sm "
-                                                                @click="eliminarDelCarrito(producto)">
-                                                                -
-                                                            </button>
-                                                        </div>
-                                                    </td>
-
-
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
-                                                    </td>
-                                                    <td colspan="2">Productos: {{totalEnCarrito}}</td>
-                                                </tr>
-
-                                            </tfoot>
-
-
-
-
-                                        </table>
-
-                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                            class="btn btn-success canvasButton "
-                                            @click="comprarProductos">Comprar</button>
-                                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                            class="btn btn-danger canvasButton "
-                                            @click="vaciarCarrito()">Vaciar</button>
-                                    </div>
-                                    <div>
-                                        <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
                         </ul>
                     </nav>
 
@@ -146,6 +77,63 @@
                     <span></span>
                 </label>
             </header>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+                    <div class="p-3">
+                        <table class="table table-hover">
+                            <thead>
+                                <th class="text-center">Imagen</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="producto in productosEnCarrito">
+                                    <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
+                                    <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                                    <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                                    <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                                    <td>
+                                        <div class="d-flex w-100 justify-content-evenly">
+
+                                            <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
+
+                                                +
+                                            </button>
+                                            <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
+                                                -
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                                    </td>
+                                    <td colspan="2">Productos: {{totalEnCarrito}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
+                        <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                            class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
+                    </div>
+                    <div>
+                        <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+                    </div>
+                </div>
+            </div>
 
             <section class="d-flex justify-content-center">
 
@@ -190,11 +178,12 @@
                 </div>
 
             </section>
+
             <section id="contenedor">
                 {{actualizarCards}}
 
                 <form class="d-flex justify-content-center m-5">
-                    <select name="" id="" v-model="filtroPrecio">
+                    <select name="" id="select" class="rounded-pill" v-model="filtroPrecio">
                         <p>filtrar</p>
                         <option value="all" selected>Filtrar por:</option>
                         <option value="Mayor a Menor">Precio Ascendente</option>
@@ -207,7 +196,7 @@
                 <div class="d-flex justify-content-evenly align-content-evenly flex-wrap gap-5">
 
                     <div class="card borde" v-for="producto in productosOrdenadosJuguetes">
-                        <!-- <i id="favorito" class="fa-solid fa-heart"></i> -->
+
                         <img :src="producto.imagen" alt="rover" />
 
                         <div class="card-body">
@@ -223,9 +212,7 @@
                             <h5>$ {{producto.precio}}</h5>
                             <h5>Stock: {{producto.stock}}</h5>
                             <div class="d-flex justify-content-center mt-3">
-                                <!-- <i class="fa-solid fa-angle-left"></i> -->
-                                <!-- <input type="number" placeholder="1" name="cantidad" min="1" :max="producto.stock"> -->
-                                <!-- <i class="fa-solid fa-angle-right"></i></div> -->
+
                                 <button id="buttonJuguetes" class="card-button ms-3"
                                     @click="añadirAlCarrito(producto)">Añadir al carrito</button>
                             </div>
@@ -234,7 +221,62 @@
                 </div>
             </section>
         </div>
-        <footer class="text-white">
+
+        <p class="contenedorDestacados mt-5 mb-5 h3" data-aos="zoom-in" data-aos-duration="2000"></p>
+
+        <div class="d-flex justify-content-evenly mt-5" data-aos="zoom-in" data-aos-duration="2000">
+            <div class="text-center">
+                <i class="fa-solid fa-dog iconosAnimal"></i>
+                <h4 class="mt-3 h2 textoColorFarmacia">Variedad</h4>
+                <p class="fs-5">En nuestros locales y nuestra web </p>
+                <p class="fs-5">encontraras la mas grande variedad de productos.</p>
+            </div>
+            <div class="text-center">
+                <i class="fa-solid fa-cat iconosAnimal"></i>
+                <h4 class="mt-3 h2 textoColorFarmacia">Atencion</h4>
+                <p class="fs-5">Te brindamos atención personalizada </p>
+                <p class="fs-5">para que tengas la mejor experiencia.</p>
+            </div>
+            <div class="text-center">
+                <i class="fa-solid fa-paw iconosAnimal"></i>
+                <h4 class="mt-3 h2 textoColorFarmacia">Responsabilidad</h4>
+                <p class="fs-5">Contamos con profesionales altamente capacitados </p>
+                <p class="fs-5">para la atención de su mascota.</p>
+            </div>
+        </div>
+
+        <p class="contenedorDestacados mt-5 mb-5 h3" data-aos="zoom-in" data-aos-duration="2000"></p>
+
+        <section class="contenedorDeliveryFarmacia" data-aos="zoom-in" data-aos-duration="2000">
+            <article>
+                <h4 class="h3 mb-2 textoColorFarmacia">Delivery</h4>
+                <p class="fs-5">Franco.com cuenta con envíos a domicilio sin cargo </p>
+                <p class="fs-5">en C.A.B.A y G.B.A. si tu compra supera los $3500.</p>
+                <p class="fs-5"><span>Por compras menores a $3500</span>, consultá el costo de envío telefónico </p>
+                <p class="fs-5">al <span>0810-888-7387 o vía Whatsapp al 11-2040-1240.</span></p>
+                <p class="fs-5">realizamos envíos por encomienda a todo el país con la empresa transportista que el
+                    cliente elija.</p>
+                <p class="fs-5"> Si el despacho se hace desde Retiro tiene un costo adicional.</p>
+                <p class="fs-5">El costo del despachp es a cargo del comprador.</p>
+            </article>
+            <article>
+                <h4 class="h3 mb-2 mt-5 textoColorFarmacia">Envío en el día</h4>
+                <p class="fs-5">Realiza tu pedido antes de las 12 hs. y recibilo en tu casa el mismo día.Válido para
+                    C.A.B.A y G.B.A.</p>
+                <h5 class="h4 mt-3 mb-2">Condiciones:</h5>
+                <ul>
+                    <li>De lunes a sábado realizando tu pedido de 0 a 12hs., lo recibís el mismo día entre las 14 y 21
+                        hs.</li>
+                    <li>De lunes a viernes realizando tu pedido entre las 12 y 24 hs., lo recibís al siguiente.</li>
+                    <li>Los pedidos realizados los sábados a partir de las 12 hs. y domingos los recibís el día lunes.
+                    </li>
+                    <li>Día feriado no aplica.</li>
+                    <li>Lujan, Campana, La Plata y Rosario quedan exceptuados.</li>
+                </ul>
+            </article>
+        </section>
+
+        <footer class="text-white" data-aos="zoom-in" data-aos-duration="2000">>
             <div class="contenedor-footer">
                 <div data-aos="zoom-in" data-aos-duration="1000">
                     <div class="contenedor-logo">
@@ -305,6 +347,10 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="./scripts/main.js"></script>
 </body>
 

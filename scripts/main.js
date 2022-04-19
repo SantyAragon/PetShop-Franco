@@ -66,7 +66,8 @@ Vue.createApp({
                 this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
                 // capturo las compras realizadas en local storage (en proceso)
                 this.productosComprados = JSON.parse(localStorage.getItem("compras"))
-
+                let loader = document.querySelector("#loader")
+                loader.classList.add("spinner-desactive")
             })
 
     },

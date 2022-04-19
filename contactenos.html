@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petshop | Franco - Contacto</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Sigmar+One&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Enriqueta&family=Fredoka+One&family=Quicksand&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/custom.css">
@@ -55,66 +57,7 @@
 
                             </button>
 
-                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                                aria-labelledby="offcanvasRightLabel">
-                                <div class="offcanvas-header">
-                                    <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
-                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="offcanvas-body">
 
-                                    <table class="table table-dark table-striped table-hover">
-                                        <thead>
-                                            <th class="text-center">Imagen</th>
-                                            <th class="text-center">Producto</th>
-                                            <th class="text-center">Precio</th>
-                                            <th class="text-center">Cantidad</th>
-                                            <th class="text-center">Accion</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="producto in productosEnCarrito">
-                                                <td><img :src="producto.imagen" class="rounded-circle" alt=""
-                                                        width="40"></td>
-                                                <td class="pt-3 text-center"> {{producto.nombre}}</td>
-                                                <td class="pt-3 text-center"> ${{producto.precio}}</td>
-                                                <td class="pt-3 text-center">{{producto.cantidad}} </td>
-                                                <td>
-                                                    <div style="text-align: center " class="d-flex">
-                                                    
-                                                        <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
-                                                        
-                                                          +
-                                                        </button>
-                                                        <button class=" btn-danger btn-sm ms-1" @click="eliminarDelCarrito(producto)">  
-                                                          -
-                                                        </button>
-                                                    </div>
-
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
-                                                </td>
-                                                <td colspan="2">Productos: {{totalEnCarrito}}</td>
-                                            </tr>
-
-                                        </tfoot>
-
-
-
-
-                                    </table>
-
-                                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                        class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
-                                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                                        class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
-
-                                </div>
-                            </div>
 
 
 
@@ -128,6 +71,72 @@
                     <span></span>
                 </label>
             </header>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+                <div class="p-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Producto</th>
+                            <th class="text-center">Precio</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Accion</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="producto in productosEnCarrito">
+                                <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
+                                <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                                <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                                <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                                <td>
+                                    <div class="d-flex w-100 justify-content-evenly">
+
+                                        <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
+
+                                            +
+                                        </button>
+                                        <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
+                                            -
+                                        </button>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                                </td>
+                                <td colspan="2">Productos: {{totalEnCarrito}}</td>
+                            </tr>
+
+                        </tfoot>
+
+
+
+
+                    </table>
+
+                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                        class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
+                    <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
+                        class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
+                </div>
+                <div>
+                    <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+
 
             <h1 class="text-center mt-4 contacto">Contactanos!</h1>
             <div id="basco" class="d-flex justify-content-center align-items-center">
@@ -151,24 +160,27 @@
                         <input type="email" class="form-control" id="inputCity"
                             placeholder="Bobesponja@crustaceoCascarudo.com">
                     </div>
-                        <div>
+                    <div>
                         <p>Seleccione Mascota:</p>
                         <div class="form-check form-check-inline w-25 gaturro">
-                        <label class="form-check-label" for="inlineRadio1">Gato</label>
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        
-                      </div>
-                      <div class="form-check form-check-inline w-25 gaturro">
-                        <label class="form-check-label" for="inlineRadio2">Perro</label>
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        
-                      </div>
-                      <div class="form-check form-check-inline w-25 gaturro">
-                        <label class="form-check-label" for="inlineRadio3">Otro</label>
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
-                        
-                      </div>
+                            <label class="form-check-label" for="inlineRadio1">Gato</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+
                         </div>
+                        <div class="form-check form-check-inline w-25 gaturro">
+                            <label class="form-check-label" for="inlineRadio2">Perro</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+
+                        </div>
+                        <div class="form-check form-check-inline w-25 gaturro">
+                            <label class="form-check-label" for="inlineRadio3">Otro</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="option3">
+
+                        </div>
+                    </div>
 
                     <div class="col-12">
                         <label for="exampleFormControlTextarea1" class="form-label">Mensaje:</label>
@@ -185,10 +197,12 @@
 
 
                 <article class="ps-3 ms-3 align-self-center ow g-3 w-25 ">
-                    <p class="d-none d-md-block">Formulario de contacto! ante cualquier duda envianos un mensaje y te responderemos lo mas rapido
+                    <p class="d-none d-md-block">Formulario de contacto! ante cualquier duda envianos un mensaje y te
+                        responderemos lo mas rapido
                         posible!
                     </p>
-                    <p class="d-none d-md-block">Ante emergencias nuestra direccion es: Rio de Janeiro N°300 (Caballito), guardias 24hs.</p>
+                    <p class="d-none d-md-block">Ante emergencias nuestra direccion es: Rio de Janeiro N°300
+                        (Caballito), guardias 24hs.</p>
                     <iframe class="d-none d-md-block"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.6869258109523!2d-58.43257238477008!3d-34.612077380457414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca429815227f%3A0x5d302e497c2cda87!2sR%C3%ADo%20de%20Janeiro%20300%2C%20C1405CCB%20CABA!5e0!3m2!1ses-419!2sar!4v1649948522581!5m2!1ses-419!2sar"
                         width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -265,10 +279,9 @@
         </footer>
     </div>
     <script src="https://kit.fontawesome.com/2544a6d2ae.js" crossorigin="anonymous"></script>
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-   </script>
+    </script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="./scripts/main.js"></script>
 
