@@ -933,10 +933,6 @@ a:hover {
     color: #ffff
 }
 
-#contenidotextoParrafo {
-    /* font-family: 'GalanoGrotesque', sans-serif; */
-    /* font-size: 1.7rem; */
-}
 
 #contenedorTextoBoton {
     font-size: 1.2rem;
@@ -1095,11 +1091,7 @@ a:hover {
     }
 }
 
-#contenedorDescripcionTienda {
-    background: rgb(243, 123, 33);
-    background: radial-gradient(circle, rgba(243, 123, 33, 1) 20%, rgba(195, 94, 219, 1) 100%);
-    border-radius: 2rem;
-}
+
 
 .card {
     overflow: hidden;

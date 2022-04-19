@@ -66,6 +66,7 @@ Vue.createApp({
                 this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
                 // capturo las compras realizadas en local storage (en proceso)
                 this.productosComprados = JSON.parse(localStorage.getItem("compras"))
+
                 let loader = document.querySelector("#loader")
                 loader.classList.add("spinner-desactive")
             })
@@ -150,14 +151,9 @@ Vue.createApp({
         //FUNCION QUE ELIMINA PRODUCTO DEL CARRITO
         eliminarDelCarrito(producto) {
             this.productoCarrito = this.productosEnCarrito.filter(prod => producto._id == prod._id)[0]
-            // this.productoOriginal = this.productosEnCarrito.filter(prod => producto._id == prod._id)
-            // this.productosFarmacia.filter(prod => this.productoOriginal._id == prod._id)
+
             let index = this.productosJuguetes.findIndex(prod => prod._id == producto._id);
             // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
-            console.log(this.productoCarrito)
-            console.log(index)
-            console.log(this.productosJuguetes[index])
-
             if (this.productoCarrito.cantidad > 1) {
                 this.productoCarrito.cantidad--
                 this.productoCarrito.stock++
@@ -196,10 +192,10 @@ Vue.createApp({
 
             this.productosEnCarrito = []
             this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
+            
             // SE SOBRESCRIBE EL ARRAY DE LOS PRODUCTOS EN CARRITO EN LOCAL STORAGE
-
             localStorage.setItem("carrito", JSON.stringify(this.productosEnCarrito))
-            // localStorage.setItem("compras", JSON.stringify(this.comprasEnStorage))
+           
 
             // NOTIFICACION POR REALIZAR COMPRA
             Swal.fire({
