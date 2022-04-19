@@ -169,6 +169,11 @@ Vue.createApp({
             else {
                 this.productosEnCarrito = this.productosEnCarrito.filter(prod => prod._id != producto._id)
                 producto.stock++
+                Swal.fire({
+                    title: 'Eliminado del Carrito',
+                    imageUrl: 'https://cdn-icons-png.flaticon.com/512/105/105739.png',
+                    imageHeight: 80,
+                })
             }
             // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
             this.totalEnCarrito = this.productosEnCarrito.map(prod => prod.cantidad).reduce((a, b) => a + b, 0)
@@ -179,11 +184,7 @@ Vue.createApp({
             localStorage.setItem("carrito", JSON.stringify(this.productosEnStorage))
 
             //NOTIFICACION DE ELIMINADO DEL CARRITO
-            Swal.fire({
-                title: 'Eliminado del Carrito',
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/105/105739.png',
-                imageHeight: 80,
-            })
+
         },
         comprarProductos() {
             //RECORRE EL ARRAY DE PRODUCTOS EN EL CARRITO Y AGREGA AL ARRAY COMPRAS EN LOC STORAGE

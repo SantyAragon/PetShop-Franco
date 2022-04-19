@@ -641,7 +641,8 @@ input {
     margin: 0;
     padding: 0;
 }
-form{
+
+form {
     color: white;
 
 }
@@ -752,12 +753,17 @@ button:hover .button-text {
 article iframe {
     box-shadow: rgba(0, 0, 0, 0.4) 3px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     margin-top: 2rem;
+    border-radius: 2rem;
 }
+
 article iframe:hover {
     transform: scale(1.20);
     z-index: 1000;
+    transition: all 1s;
+    border-radius: 2rem;
 }
-.ow{
+
+.ow {
     margin-left: 2rem;
 }
 
@@ -818,12 +824,12 @@ article iframe:hover {
     }
 }
 
-.textoColorFarmacia{
+.textoColorFarmacia {
     color: #f37b21;
 }
 
-#textoColorContacto{
-    color:#c35edb;
+#textoColorContacto {
+    color: #c35edb;
 }
 
 .contenedorDeliveryFarmacia {
@@ -1148,6 +1154,10 @@ a:hover {
         box-sizing: content-box;
     }
 
+    .d-block-promociones {
+        width: 100%;
+        height: 20vh;
+    }
 
     .hidden {
         transform: translate(-700px)
