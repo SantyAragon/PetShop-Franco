@@ -30,12 +30,11 @@
   <div id="app">
     <header class="header_interior">
       <div class="logo__header-interior">
-          <a class="navbar-brand fs-3 fw-ligth text-light  d-flex align-items-center" href="#">
-              <img class="logo_nav bg-light rounded-circle ms-3" src="./assets/logo.png" alt="logo">
-              <h1 class="ms-2 fs-3">Pet<span class="fs-2 shop">Shop</span><span
-                      class="nombre fs-3 text-light">Franco</span>
-              </h1>
-          </a>
+        <a class="navbar-brand fs-3 fw-ligth text-light  d-flex align-items-center" href="#">
+          <img class="logo_nav bg-light rounded-circle ms-3" src="./assets/logo.png" alt="logo">
+          <h1 class="ms-2 fs-3">Pet<span class="fs-2 shop">Shop</span><span class="nombre fs-3 text-light">Franco</span>
+          </h1>
+        </a>
       </div>
 
 
@@ -43,102 +42,100 @@
 
       <div class="nav_interior">
 
-          <nav>
-              <ul class="align-items-center">
-                  <li><a href="./index.html">Inicio</a></li>
-                  <li><a href="./juguetes.html">Juguetes</a></li>
-                  <li><a href="./farmacia.html">Farmacia</a></li>
-                  <li><a href="./tienda.html">Tienda</a></li>
-                  <li><a href="./contactenos.html">Contacto</a></li>
+        <nav>
+          <ul class="align-items-center">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./juguetes.html">Juguetes</a></li>
+            <li><a href="./farmacia.html">Farmacia</a></li>
+            <li><a href="./tienda.html">Tienda</a></li>
+            <li><a href="./contactenos.html">Contacto</a></li>
 
-                  <button class="canvas" type="button" data-bs-toggle="offcanvas"
-                      data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <button class="canvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight">
 
-                      <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
-                      <div class="mx-2 text-left">
-                          <p class="m-0">({{totalEnCarrito}})</p>
-                          <p class="m-0">Total: ${{precioTotal}}</p>
+              <i class="fa-solid fa-cart-shopping carrito-nav-interior"></i>
+              <div class="mx-2 text-left">
+                <p class="m-0">({{totalEnCarrito}})</p>
+                <p class="m-0">Total: ${{precioTotal}}</p>
 
-                  </button>
-
-
+            </button>
 
 
 
 
-              </ul>
-          </nav>
+
+
+          </ul>
+        </nav>
 
       </div>
 
       <label for="nav-toggle" class="nav-toggle-label">
-          <span></span>
+        <span></span>
       </label>
-  </header>
+    </header>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-      aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
-          <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-              aria-label="Close"></button>
+        <h3 class="text-center canvasTitulo">Productos en Carrito</h3>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
-          <div class="p-3">
-              <table class="table table-hover">
-                  <thead>
-                      <th class="text-center">Imagen</th>
-                      <th class="text-center">Producto</th>
-                      <th class="text-center">Precio</th>
-                      <th class="text-center">Cantidad</th>
-                      <th class="text-center">Accion</th>
-                  </thead>
-                  <tbody>
-                      <tr v-for="producto in productosEnCarrito">
-                          <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
-                          <td class="pt-3 text-center"> {{producto.nombre}}</td>
-                          <td class="pt-3 text-center"> ${{producto.precio}}</td>
-                          <td class="pt-3 text-center">{{producto.cantidad}} </td>
-                          <td>
-                              <div class="d-flex w-100 justify-content-evenly">
+        <div class="p-3">
+          <table class="table table-hover">
+            <thead>
+              <th class="text-center">Imagen</th>
+              <th class="text-center">Producto</th>
+              <th class="text-center">Precio</th>
+              <th class="text-center">Cantidad</th>
+              <th class="text-center">Accion</th>
+            </thead>
+            <tbody>
+              <tr v-for="producto in productosEnCarrito">
+                <td><img :src="producto.imagen" class="rounded-circle" alt="" width="40"></td>
+                <td class="pt-3 text-center"> {{producto.nombre}}</td>
+                <td class="pt-3 text-center"> ${{producto.precio}}</td>
+                <td class="pt-3 text-center">{{producto.cantidad}} </td>
+                <td>
+                  <div class="d-flex w-100 justify-content-evenly">
 
-                                  <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
+                    <button class=" btn-info btn-sm" @click="añadirAlCarrito(producto)">
 
-                                      +
-                                  </button>
-                                  <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
-                                      -
-                                  </button>
-                              </div>
-                          </td>
-
-
-                      </tr>
-                  </tbody>
-                  <tfoot>
-                      <tr>
-                          <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
-                          </td>
-                          <td colspan="2">Productos: {{totalEnCarrito}}</td>
-                      </tr>
-
-                  </tfoot>
+                      +
+                    </button>
+                    <button class=" btn-danger btn-sm " @click="eliminarDelCarrito(producto)">
+                      -
+                    </button>
+                  </div>
+                </td>
 
 
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="text-center" colspan="3">Total a pagar: $ {{precioTotal}}
+                </td>
+                <td colspan="2">Productos: {{totalEnCarrito}}</td>
+              </tr>
+
+            </tfoot>
 
 
-              </table>
 
-              <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                  class="btn btn-success canvasButton " @click="comprarProductos">Comprar</button>
-              <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav"
-                  class="btn btn-danger canvasButton " @click="vaciarCarrito()">Vaciar</button>
-          </div>
-          <div>
-              <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
-          </div>
+
+          </table>
+
+          <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav" class="btn btn-success canvasButton "
+            @click="comprarProductos">Comprar</button>
+          <button v-if="productosEnCarrito.length>0" href="#" id="botoncinNav" class="btn btn-danger canvasButton "
+            @click="vaciarCarrito()">Vaciar</button>
+        </div>
+        <div>
+          <img id="backgroundCanva" src="./assets/backgroundPrueba.jpg" alt="">
+        </div>
       </div>
-  </div>
+    </div>
 
 
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-aos="zoom-in"
@@ -358,7 +355,7 @@
       </div>
 
       <img data-aos="fade-up" data-aos-duration="3000" class="col-6 d-inline perroPagTiendaDestacado"
-        src="/assets/perroPagTiendaDestacado.png" alt="perro tienda" id="imgPerrito">
+        src="./assets/perroPagTiendaDestacado.png" alt="perro tienda" id="imgPerrito">
 
     </div>
 
@@ -443,17 +440,17 @@
         </div>
       </div>
     </footer>
-
-    <script src="https://kit.fontawesome.com/2544a6d2ae.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://unpkg.com/vue@3"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-    <script src="./scripts/main.js"></script>
+  </div>
+  <script src="https://kit.fontawesome.com/2544a6d2ae.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="./scripts/main.js"></script>
 
 </body>
 
